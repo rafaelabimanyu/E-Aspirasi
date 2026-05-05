@@ -119,7 +119,7 @@
             </div>
             <div class="p-5 space-y-4">
                 @forelse($news ?? collect() as $item)
-                <a href="#" class="block group">
+                <a href="{{ route('news.show', $item->slug) }}" class="block group">
                     <span class="inline-block px-2 py-0.5 bg-blue-50 text-blue-600 text-[10px] font-bold rounded mb-1 uppercase tracking-wider">{{ $item->type }}</span>
                     <h3 class="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">{{ $item->title }}</h3>
                     <p class="text-xs text-gray-500 mt-1">{{ $item->created_at->format('d M Y') }}</p>
@@ -169,4 +169,20 @@
 
     </div>
 </div>
+
+@if(session('success'))
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            html: `{{ session('success') }}<br><br><span class="text-sm text-gray-600"><strong>Catat Tracking ID ini!</strong> Anda dapat menggunakannya di halaman depan (Cari Laporan) untuk melacak status penanganan laporan Anda secara real-time.</span>`,
+            confirmButtonColor: '#2563eb',
+            confirmButtonText: 'Mengerti'
+        });
+    });
+</script>
+@endif
+
 @endsection
