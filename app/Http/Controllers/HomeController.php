@@ -16,4 +16,10 @@ class HomeController extends Controller
         
         return view('welcome', compact('news', 'totalSelesai', 'totalProses'));
     }
+
+    public function show($slug)
+    {
+        $newsItem = News::where('slug', $slug)->firstOrFail();
+        return view('news.show', compact('newsItem'));
+    }
 }

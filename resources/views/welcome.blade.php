@@ -128,8 +128,56 @@
         </div>
     </section>
 
+    <!-- Alur Pelayanan (How It Works) -->
+    <section id="alur-pelayanan" class="py-24 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-blue-600 font-black tracking-[0.2em] text-xs uppercase mb-4">Cara Kerja</h2>
+                <h3 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">Alur Pelayanan Kami</h3>
+                <p class="text-slate-500 max-w-2xl mx-auto">Proses pelaporan yang mudah, transparan, dan terukur. Kami memastikan setiap suara Anda didengar dan ditindaklanjuti.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="relative text-center group">
+                    <div class="hidden md:block absolute top-1/4 left-1/2 w-full border-t-2 border-dashed border-slate-200 -z-10 group-hover:border-blue-400 transition-colors"></div>
+                    <div class="w-20 h-20 mx-auto bg-blue-50 border-2 border-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg shadow-blue-100">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">1. Daftar/Login</h4>
+                    <p class="text-sm text-slate-500">Buat akun menggunakan data diri yang valid untuk mulai melapor.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative text-center group">
+                    <div class="hidden md:block absolute top-1/4 left-1/2 w-full border-t-2 border-dashed border-slate-200 -z-10 group-hover:border-blue-400 transition-colors"></div>
+                    <div class="w-20 h-20 mx-auto bg-blue-50 border-2 border-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg shadow-blue-100">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">2. Tulis Laporan</h4>
+                    <p class="text-sm text-slate-500">Sampaikan keluhan atau aspirasi dengan detail dan lampirkan bukti.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative text-center group">
+                    <div class="hidden md:block absolute top-1/4 left-1/2 w-full border-t-2 border-dashed border-slate-200 -z-10 group-hover:border-blue-400 transition-colors"></div>
+                    <div class="w-20 h-20 mx-auto bg-blue-50 border-2 border-blue-100 rounded-full flex items-center justify-center mb-6 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg shadow-blue-100">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">3. Proses Verifikasi</h4>
+                    <p class="text-sm text-slate-500">Laporan Anda akan diverifikasi oleh petugas untuk ditindaklanjuti.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="relative text-center group">
+                    <div class="w-20 h-20 mx-auto bg-emerald-50 border-2 border-emerald-100 rounded-full flex items-center justify-center mb-6 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-lg shadow-emerald-100">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2">4. Selesai</h4>
+                    <p class="text-sm text-slate-500">Instansi terkait telah menyelesaikan laporan Anda. Anda dapat memberi tanggapan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Bento Grid Stats Section -->
-    <section id="statistik" class="py-24 bg-white">
+    <section id="statistik" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
                 <div>
@@ -191,7 +239,7 @@
     </section>
 
     <!-- News Grid Section -->
-    <section id="berita" class="py-24 bg-slate-50">
+    <section id="berita" class="py-24 bg-white border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-slate-900 text-4xl font-black mb-4">Warta Komunitas</h2>
@@ -226,12 +274,15 @@
                         <div class="p-8">
                             <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">
                                 {{ $item->created_at->format('d M Y') }}</div>
-                            <h3 class="text-xl font-extrabold text-slate-900 mb-4 line-clamp-2 leading-tight">
-                                {{ $item->title }}</h3>
+                            <a href="{{ route('news.show', $item->slug) }}" class="block">
+                                <h3 class="text-xl font-extrabold text-slate-900 mb-4 line-clamp-2 leading-tight hover:text-blue-600 transition-colors">
+                                    {{ $item->title }}
+                                </h3>
+                            </a>
                             <p class="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-3">
                                 {{ Str::limit($item->content, 120) }}
                             </p>
-                            <a href="#"
+                            <a href="{{ route('news.show', $item->slug) }}"
                                 class="inline-flex items-center text-blue-600 font-bold text-sm group-hover:gap-2 transition-all">
                                 Baca Selengkapnya
                                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -252,6 +303,58 @@
                         </div>
                     </div>
                 @endforelse
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-blue-600 font-black tracking-[0.2em] text-xs uppercase mb-4">FAQ</h2>
+                <h3 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">Pertanyaan Seputar Layanan</h3>
+                <p class="text-slate-500">Temukan jawaban dari pertanyaan yang sering diajukan terkait E-Aspirasi.</p>
+            </div>
+
+            <div class="space-y-4" x-data="{ activeAccordion: null }">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button @click="activeAccordion = activeAccordion === 1 ? null : 1" class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-bold text-slate-900">Apakah identitas saya sebagai pelapor aman?</span>
+                        <svg class="w-5 h-5 text-slate-500 transform transition-transform duration-300" :class="{ 'rotate-180': activeAccordion === 1 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div x-show="activeAccordion === 1" x-collapse x-cloak>
+                        <div class="px-6 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-50 mt-2 pt-4">
+                            Ya, sistem E-Aspirasi dilengkapi dengan opsi "Laporan Rahasia" (Anonim) yang memastikan data diri Anda tidak akan ditampilkan kepada publik maupun instansi terkait jika Anda memilih opsi tersebut.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button @click="activeAccordion = activeAccordion === 2 ? null : 2" class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-bold text-slate-900">Berapa lama laporan saya akan diproses?</span>
+                        <svg class="w-5 h-5 text-slate-500 transform transition-transform duration-300" :class="{ 'rotate-180': activeAccordion === 2 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div x-show="activeAccordion === 2" x-collapse x-cloak>
+                        <div class="px-6 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-50 mt-2 pt-4">
+                            Sesuai dengan SOP standar pelayanan, laporan akan diverifikasi paling lambat 1x24 jam hari kerja. Setelah diteruskan ke instansi terkait, proses penyelesaian sangat bergantung pada jenis masalah, namun Anda dapat selalu memantau status secara real-time.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button @click="activeAccordion = activeAccordion === 3 ? null : 3" class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-bold text-slate-900">Apakah saya bisa mengubah atau menghapus laporan?</span>
+                        <svg class="w-5 h-5 text-slate-500 transform transition-transform duration-300" :class="{ 'rotate-180': activeAccordion === 3 }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div x-show="activeAccordion === 3" x-collapse x-cloak>
+                        <div class="px-6 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-50 mt-2 pt-4">
+                            Laporan yang sudah berstatus "Diverifikasi" atau "Diproses" tidak dapat lagi diubah atau dihapus untuk menjaga keutuhan data pelayanan publik. Namun Anda dapat menambahkan tanggapan pada laporan tersebut.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -277,21 +380,35 @@
                         lapisan masyarakat Indonesia.
                     </p>
                 </div>
-                <div class="md:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                        <h4 class="text-white font-bold mb-6">Tautan Cepat</h4>
+                        <h4 class="text-white font-bold mb-6">Informasi Kontak</h4>
                         <ul class="space-y-4 text-slate-400 text-sm">
-                            <li><a href="#" class="hover:text-blue-400">Statistik Penanganan</a></li>
-                            <li><a href="#" class="hover:text-blue-400">Informasi Berita</a></li>
-                            <li><a href="#" class="hover:text-blue-400">Pusat Bantuan</a></li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <span>Gedung Pelayanan Publik Terpadu Lt. 2<br>Jl. Merdeka No. 1, Kota Administratif</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                <span>(021) 123-4567</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                <span>layanan@e-aspirasi.go.id</span>
+                            </li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-white font-bold mb-6">Legalitas</h4>
-                        <ul class="space-y-4 text-slate-400 text-sm">
-                            <li><a href="#" class="hover:text-blue-400">Kebijakan Privasi</a></li>
-                            <li><a href="#" class="hover:text-blue-400">Syarat & Ketentuan</a></li>
-                        </ul>
+                        <h4 class="text-white font-bold mb-6">Lokasi Kami</h4>
+                        <div class="w-full h-40 bg-slate-800 rounded-xl overflow-hidden relative border border-slate-700">
+                            <!-- Placeholder Map -->
+                            <div class="absolute inset-0 flex items-center justify-center opacity-30">
+                                <svg class="w-20 h-20 text-slate-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            </div>
+                            <div class="absolute bottom-2 left-2 right-2 text-center text-[10px] text-slate-400 font-medium">
+                                Peta Interaktif Sedang Dimuat...
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
