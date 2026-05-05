@@ -14,6 +14,13 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
+// Admin & Petugas Routes
+Route::middleware(['auth', 'role:admin,petugas'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('dashboard');
+    Route::post('/pengaduan/{id}/status', [\App\Http\Controllers\Admin\AdminController::class, 'updateStatus'])->name('pengaduan.status');
+});
+
+// Masyarakat Routes
 Route::middleware(['auth', 'role:masyarakat'])->prefix('masyarakat')->name('masyarakat.')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\Masyarakat\PengaduanController::class, 'index'])->name('pengaduan.index');
     Route::get('/pengaduan/create', [\App\Http\Controllers\Masyarakat\PengaduanController::class, 'create'])->name('pengaduan.create');
