@@ -11,9 +11,9 @@ class PengaduanController extends Controller
 {
     public function index()
     {
-        // Example logic for returning view
         $pengaduans = Pengaduan::where('user_id', Auth::id())->latest()->get();
-        return view('masyarakat.pengaduan.index', compact('pengaduans'));
+        $news = \App\Models\News::latest()->take(2)->get();
+        return view('masyarakat.pengaduan.index', compact('pengaduans', 'news'));
     }
 
     public function create()
@@ -62,5 +62,22 @@ class PengaduanController extends Controller
     {
         $pengaduan = Pengaduan::where('id', $id)->where('user_id', Auth::id())->with('tanggapans.user')->firstOrFail();
         return view('masyarakat.pengaduan.show', compact('pengaduan'));
+    }
+
+    public function storeTanggapan(Request $request, $id)
+    {
+        $request->validate([
+            'response' => 'required|string',
+        ]);
+
+        $pengaduan = Pengaduan::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+
+        \App\Models\Tanggapan::create([
+            'pengaduan_id' => $pengaduan->id,
+            'user_id' => Auth::id(),
+            'response' => $request->response,
+        ]);
+
+        return redirect()->back()->with('success', 'Tanggapan berhasil dikirim.');
     }
 }
