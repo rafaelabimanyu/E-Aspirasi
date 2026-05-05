@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-#[Fillable(['tracking_id', 'user_id', 'title', 'description', 'category', 'incident_date', 'location', 'attachment', 'status'])]
+#[Fillable(['tracking_id', 'user_id', 'title', 'classification', 'description', 'category', 'incident_date', 'location', 'attachment', 'status', 'is_anonymous', 'is_secret'])]
 class Pengaduan extends Model
 {
     use HasFactory;

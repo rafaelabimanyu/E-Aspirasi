@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('pengaduans', function (Blueprint $table) {
+            $table->enum('classification', ['pengaduan', 'aspirasi', 'informasi'])->default('pengaduan')->after('title');
+            $table->boolean('is_anonymous')->default(false)->after('attachment');
+            $table->boolean('is_secret')->default(false)->after('is_anonymous');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('pengaduans', function (Blueprint $table) {
+            $table->dropColumn(['classification', 'is_anonymous', 'is_secret']);
+        });
+    }
+};

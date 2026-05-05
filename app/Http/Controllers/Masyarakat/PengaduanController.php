@@ -24,6 +24,7 @@ class PengaduanController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'classification' => 'required|in:pengaduan,aspirasi,informasi',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'category' => 'required|string',
@@ -46,6 +47,7 @@ class PengaduanController extends Controller
         Pengaduan::create([
             'tracking_id' => $trackingId,
             'user_id' => Auth::id(),
+            'classification' => $validated['classification'],
             'title' => $validated['title'],
             'description' => $validated['description'],
             'category' => $validated['category'],
@@ -53,6 +55,8 @@ class PengaduanController extends Controller
             'location' => $validated['location'],
             'attachment' => $attachmentPath,
             'status' => 'pending',
+            'is_anonymous' => $request->has('is_anonymous'),
+            'is_secret' => $request->has('is_secret'),
         ]);
 
         return redirect()->route('masyarakat.pengaduan.index')->with('success', 'Pengaduan berhasil dikirim dengan Tracking ID: ' . $trackingId);
