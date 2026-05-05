@@ -77,4 +77,21 @@ class AdminController extends Controller
         $pdf = Pdf::loadView('admin.pengaduan.pdf', compact('pengaduans'))->setPaper('a4', 'landscape');
         return $pdf->stream('laporan_e-aspirasi.pdf');
     }
+
+    public function berita()
+    {
+        $news = \App\Models\News::latest()->paginate(15);
+        return view('admin.berita', compact('news'));
+    }
+
+    public function users()
+    {
+        $users = \App\Models\User::latest()->paginate(15);
+        return view('admin.users', compact('users'));
+    }
+
+    public function settings()
+    {
+        return view('admin.settings');
+    }
 }

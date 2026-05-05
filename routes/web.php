@@ -15,11 +15,26 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
+// Shared: Buat Pengaduan — accessible by all roles
+Route::middleware(['auth', 'role:masyarakat,admin,petugas'])->group(function () {
+    Route::get('/pengaduan/create', [\App\Http\Controllers\Masyarakat\PengaduanController::class, 'create'])->name('pengaduan.create');
+    Route::post('/pengaduan', [\App\Http\Controllers\Masyarakat\PengaduanController::class, 'store'])->name('pengaduan.store');
+});
+
 // Admin & Petugas Routes
 Route::middleware(['auth', 'role:admin,petugas'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('dashboard');
     Route::get('/pengaduan/export', [\App\Http\Controllers\Admin\AdminController::class, 'exportPdf'])->name('pengaduan.export');
     Route::post('/pengaduan/{id}/status', [\App\Http\Controllers\Admin\AdminController::class, 'updateStatus'])->name('pengaduan.status');
+
+    // Manajemen Berita
+    Route::get('/berita', [\App\Http\Controllers\Admin\AdminController::class, 'berita'])->name('berita.index');
+
+    // Manajemen User
+    Route::get('/users', [\App\Http\Controllers\Admin\AdminController::class, 'users'])->name('users.index');
+
+    // Pengaturan Sistem
+    Route::get('/settings', [\App\Http\Controllers\Admin\AdminController::class, 'settings'])->name('settings');
 });
 
 // Masyarakat Routes
@@ -30,3 +45,4 @@ Route::middleware(['auth', 'role:masyarakat'])->prefix('masyarakat')->name('masy
     Route::get('/pengaduan/{id}', [\App\Http\Controllers\Masyarakat\PengaduanController::class, 'show'])->name('pengaduan.show');
     Route::post('/pengaduan/{id}/tanggapan', [\App\Http\Controllers\Masyarakat\PengaduanController::class, 'storeTanggapan'])->name('pengaduan.tanggapan');
 });
+
