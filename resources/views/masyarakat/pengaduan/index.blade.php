@@ -26,7 +26,7 @@
             $menunggu = $total - $diproses - $selesai;
         @endphp
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex items-center">
+            <div class="card p-5 rounded-xl border border-gray-200 shadow-sm flex items-center">
                 <div class="p-3 rounded-full bg-blue-50 text-blue-600 mr-4">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
                 </div>
@@ -35,7 +35,7 @@
                     <p class="text-xl font-bold text-gray-900">{{ $total }}</p>
                 </div>
             </div>
-            <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex items-center">
+            <div class="card p-5 rounded-xl border border-gray-200 shadow-sm flex items-center">
                 <div class="p-3 rounded-full bg-yellow-50 text-yellow-600 mr-4">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
@@ -44,7 +44,7 @@
                     <p class="text-xl font-bold text-gray-900">{{ $diproses }}</p>
                 </div>
             </div>
-            <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex items-center">
+            <div class="card p-5 rounded-xl border border-gray-200 shadow-sm flex items-center">
                 <div class="p-3 rounded-full bg-green-50 text-green-600 mr-4">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
@@ -56,7 +56,7 @@
         </div>
 
         <!-- History Table -->
-        <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+        <div class="card border border-gray-200 rounded-xl shadow-sm overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-200 bg-gray-50/50 flex justify-between items-center">
                 <h2 class="text-lg font-semibold text-gray-800">Riwayat Pengaduan Anda</h2>
             </div>
@@ -111,7 +111,7 @@
     <div class="xl:col-span-1 space-y-6">
         
         <!-- Informasi Terkini (News) -->
-        <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+        <div class="card border border-gray-200 rounded-xl shadow-sm overflow-hidden">
             <div class="px-5 py-4 border-b border-gray-200 bg-gray-50/50 flex justify-between items-center">
                 <h2 class="text-base font-semibold text-gray-800 flex items-center">
                     <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5L18.5 6z"></path></svg>
@@ -133,7 +133,7 @@
         </div>
 
         <!-- Poster Edukasi (Carousel/Grid) -->
-        <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+        <div class="card border border-gray-200 rounded-xl shadow-sm overflow-hidden">
             <div class="px-5 py-4 border-b border-gray-200 bg-gray-50/50">
                 <h2 class="text-base font-semibold text-gray-800 flex items-center">
                     <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>

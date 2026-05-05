@@ -24,7 +24,7 @@
     <div x-show="sidebarOpen" x-transition.opacity class="fixed inset-0 z-20 bg-gray-900 bg-opacity-50 lg:hidden" @click="sidebarOpen = false"></div>
 
     <!-- Sidebar -->
-    <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-30 w-64 bg-white border-r border-gray-200 transition-transform duration-300 lg:translate-x-0 lg:static lg:inset-0 flex flex-col">
+    <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 transition-transform duration-300 lg:translate-x-0 lg:fixed lg:inset-y-0 flex flex-col">
         <div class="flex items-center justify-center h-16 border-b border-gray-200">
             <span class="text-2xl font-bold text-blue-600">E-Aspirasi</span>
         </div>
@@ -52,9 +52,9 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="flex-1 flex flex-col min-h-screen">
+    <div class="flex-1 flex flex-col min-h-screen lg:ml-64">
         <!-- Top Navbar -->
-        <header class="flex items-center justify-between h-16 px-6 bg-white border-b border-gray-200">
+        <header class="sticky top-0 z-30 flex items-center justify-between h-16 px-6 bg-white border-b border-gray-200 transition-colors duration-300">
             <div class="flex items-center">
                 <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>

@@ -9,7 +9,7 @@
         <p class="text-sm text-gray-500 mt-1">Kelola dan tindak lanjuti laporan dari masyarakat.</p>
     </div>
     <div>
-        <a href="{{ route('admin.pengaduan.export', request()->query()) }}" target="_blank" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium text-sm transition-colors flex items-center gap-2">
+        <a href="{{ route('admin.pengaduan.export', request()->query()) }}" target="_blank" class="btn px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium text-sm flex items-center gap-2 shadow-sm border border-transparent">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
             Export PDF
         </a>
@@ -19,7 +19,7 @@
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
     <div class="md:col-span-2">
         <!-- Filter Section -->
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 h-full">
+        <div class="card p-4 rounded-xl shadow-sm border border-gray-200 h-full">
             <h2 class="text-lg font-bold text-gray-900 mb-4">Filter Data</h2>
             <form action="{{ route('admin.dashboard') }}" method="GET" class="flex flex-col gap-4">
                 <div class="flex-1 w-full">
@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="md:col-span-1">
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 h-full flex flex-col items-center justify-center">
+        <div class="card p-4 rounded-xl shadow-sm border border-gray-200 h-full flex flex-col items-center justify-center">
             <h2 class="text-sm font-bold text-gray-900 mb-2 text-center">Statistik Klasifikasi</h2>
             <div class="relative w-full max-w-[200px] aspect-square">
                 <canvas id="classificationChart"></canvas>
@@ -60,7 +60,7 @@
 
 
 <!-- Laporan Table -->
-<div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+<div class="card border border-gray-200 rounded-xl shadow-sm overflow-hidden">
     <div class="overflow-x-auto">
         <table class="w-full text-left text-sm text-gray-600">
             <thead class="bg-gray-50 text-gray-700 text-xs uppercase font-semibold border-b border-gray-200">
@@ -117,14 +117,14 @@
                         @endif
                     </td>
                     <td class="px-6 py-4 align-top text-center">
-                        <button @click="openModal = true" class="px-3 py-1.5 bg-blue-600 text-white rounded text-xs font-medium hover:bg-blue-700 transition-colors">Tindak Lanjut</button>
+                        <button @click="openModal = true" class="btn px-3 py-1.5 bg-blue-600 text-white rounded text-xs font-medium hover:bg-blue-700">Tindak Lanjut</button>
 
                         <!-- Modal Tindak Lanjut -->
                         <div x-show="openModal" class="fixed inset-0 z-50 overflow-y-auto" style="display: none;">
                             <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
                                 <div x-show="openModal" @click="openModal = false" class="fixed inset-0 transition-opacity bg-gray-900 bg-opacity-50" aria-hidden="true"></div>
 
-                                <div x-show="openModal" class="relative inline-block w-full max-w-lg p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                                <div x-show="openModal" class="relative inline-block w-full max-w-lg p-6 overflow-hidden text-left align-middle transition-all transform card shadow-xl rounded-2xl border border-gray-200">
                                     <div class="flex justify-between items-center border-b border-gray-100 pb-4 mb-4">
                                         <h3 class="text-lg font-bold text-gray-900">Tindak Lanjut Laporan</h3>
                                         <button @click="openModal = false" class="text-gray-400 hover:text-gray-500"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
@@ -149,8 +149,8 @@
                                             </div>
                                         </div>
                                         <div class="mt-6 flex justify-end gap-3">
-                                            <button type="button" @click="openModal = false" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Batal</button>
-                                            <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700">Simpan Perubahan</button>
+                                            <button type="button" @click="openModal = false" class="btn px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Batal</button>
+                                            <button type="submit" class="btn px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700">Simpan Perubahan</button>
                                         </div>
                                     </form>
                                 </div>
