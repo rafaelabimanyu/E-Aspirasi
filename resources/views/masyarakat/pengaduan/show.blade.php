@@ -70,45 +70,83 @@
             @endif
         </div>
 
-        <!-- CRM Timeline Section -->
-        <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
-            <h3 class="text-lg font-bold text-gray-900 mb-6 flex items-center">
+        <!-- CRM Timeline Section (Visual Stepper) -->
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 overflow-hidden card">
+            <h3 class="text-lg font-bold text-gray-900 mb-8 flex items-center">
                 <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                Timeline Penanganan Laporan
+                Status Penanganan Laporan
             </h3>
             
-            <div class="relative border-l-2 border-gray-200 ml-3 md:ml-4 space-y-8">
-                <!-- Step 1: Diterima -->
-                <div class="relative pl-6 md:pl-8">
-                    <span class="absolute -left-[11px] top-1 h-5 w-5 rounded-full bg-blue-600 ring-4 ring-white"></span>
-                    <h4 class="font-bold text-gray-900 text-sm md:text-base">Laporan Diterima</h4>
-                    <p class="text-xs text-gray-500 mb-1">{{ $pengaduan->created_at->format('d M Y, H:i') }}</p>
-                    <p class="text-sm text-gray-600 mt-1">Laporan Anda telah terdaftar dalam sistem dan menunggu verifikasi admin.</p>
-                </div>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+            
+            <div class="relative max-w-3xl mx-auto mb-4">
+                <!-- Connecting Line -->
+                <div class="absolute inset-0 top-1/2 hidden md:block w-full h-1 bg-gray-200 -translate-y-1/2 z-0"></div>
+                <!-- Active Line -->
+                @php
+                    $progressWidth = '0%';
+                    if(in_array($pengaduan->status, ['diverifikasi'])) $progressWidth = '33%';
+                    if(in_array($pengaduan->status, ['diproses'])) $progressWidth = '66%';
+                    if($pengaduan->status == 'selesai') $progressWidth = '100%';
+                @endphp
+                <div class="absolute inset-0 top-1/2 hidden md:block h-1 bg-blue-600 -translate-y-1/2 z-0 transition-all duration-1000" style="width: {{ $progressWidth }}"></div>
 
-                <!-- Step 2: Verifikasi -->
-                <div class="relative pl-6 md:pl-8">
+                <div class="relative z-10 flex flex-col md:flex-row justify-between gap-6 md:gap-0">
+                    
+                    <!-- Step 1: Terkirim -->
+                    <div class="flex md:flex-col items-center group relative">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-blue-600 text-white font-bold border-4 border-white shadow-md z-10 shrink-0">
+                            <i class="fas fa-paper-plane"></i>
+                        </div>
+                        <div class="ml-4 md:ml-0 md:mt-4 md:text-center">
+                            <h4 class="font-bold text-gray-900 text-sm">Terkirim</h4>
+                            <p class="text-xs text-gray-500 mt-1 hidden md:block">Laporan Diterima</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Verifikasi -->
                     @php $isVerif = in_array($pengaduan->status, ['diverifikasi', 'diproses', 'selesai']); @endphp
-                    <span class="absolute -left-[11px] top-1 h-5 w-5 rounded-full ring-4 ring-white {{ $isVerif ? 'bg-blue-600' : 'bg-gray-300' }}"></span>
-                    <h4 class="font-bold {{ $isVerif ? 'text-gray-900' : 'text-gray-500' }} text-sm md:text-base">Verifikasi & Klasifikasi</h4>
-                    <p class="text-sm {{ $isVerif ? 'text-gray-600' : 'text-gray-400' }} mt-1">Admin memverifikasi keabsahan laporan dan meneruskan ke instansi berwenang.</p>
-                </div>
+                    @php $isVerifActive = $pengaduan->status == 'diverifikasi'; @endphp
+                    <div class="flex md:flex-col items-center group relative">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center {{ $isVerif ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-400' }} font-bold border-4 border-white shadow-md z-10 shrink-0 {{ $isVerifActive ? 'animate-pulse ring-4 ring-blue-100' : '' }}">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="ml-4 md:ml-0 md:mt-4 md:text-center">
+                            <h4 class="font-bold {{ $isVerif ? 'text-gray-900' : 'text-gray-400' }} text-sm">Verifikasi</h4>
+                            <p class="text-xs {{ $isVerif ? 'text-gray-500' : 'text-gray-400' }} mt-1 hidden md:block">Pengecekan Admin</p>
+                        </div>
+                    </div>
 
-                <!-- Step 3: Koordinasi & Diproses -->
-                <div class="relative pl-6 md:pl-8">
+                    <!-- Step 3: Diproses -->
                     @php $isProses = in_array($pengaduan->status, ['diproses', 'selesai']); @endphp
-                    <span class="absolute -left-[11px] top-1 h-5 w-5 rounded-full ring-4 ring-white {{ $isProses ? 'bg-yellow-500' : 'bg-gray-300' }}"></span>
-                    <h4 class="font-bold {{ $isProses ? 'text-gray-900' : 'text-gray-500' }} text-sm md:text-base">Tindak Lanjut Instansi (Diproses)</h4>
-                    <p class="text-sm {{ $isProses ? 'text-gray-600' : 'text-gray-400' }} mt-1">Instansi terkait sedang memproses dan mengambil tindakan atas laporan Anda.</p>
-                </div>
+                    @php $isProsesActive = $pengaduan->status == 'diproses'; @endphp
+                    <div class="flex md:flex-col items-center group relative">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center {{ $isProses ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-400' }} font-bold border-4 border-white shadow-md z-10 shrink-0 {{ $isProsesActive ? 'animate-pulse ring-4 ring-blue-100' : '' }}">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="ml-4 md:ml-0 md:mt-4 md:text-center">
+                            <h4 class="font-bold {{ $isProses ? 'text-gray-900' : 'text-gray-400' }} text-sm">Diproses</h4>
+                            <p class="text-xs {{ $isProses ? 'text-gray-500' : 'text-gray-400' }} mt-1 hidden md:block">Tindak Lanjut</p>
+                        </div>
+                    </div>
 
-                <!-- Step 4: Selesai -->
-                <div class="relative pl-6 md:pl-8">
+                    <!-- Step 4: Selesai -->
                     @php $isSelesai = $pengaduan->status == 'selesai'; @endphp
-                    <span class="absolute -left-[11px] top-1 h-5 w-5 rounded-full ring-4 ring-white {{ $isSelesai ? 'bg-green-500' : 'bg-gray-300' }}"></span>
-                    <h4 class="font-bold {{ $isSelesai ? 'text-gray-900' : 'text-gray-500' }} text-sm md:text-base">Selesai</h4>
-                    <p class="text-sm {{ $isSelesai ? 'text-gray-600' : 'text-gray-400' }} mt-1">Laporan telah diselesaikan. Anda dapat membaca rincian penyelesaian di kolom tanggapan.</p>
+                    <div class="flex md:flex-col items-center group relative">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center {{ $isSelesai ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-400' }} font-bold border-4 border-white shadow-md z-10 shrink-0 {{ $isSelesai ? 'animate-pulse ring-4 ring-green-100' : '' }}">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="ml-4 md:ml-0 md:mt-4 md:text-center">
+                            <h4 class="font-bold {{ $isSelesai ? 'text-gray-900' : 'text-gray-400' }} text-sm">Selesai</h4>
+                            <p class="text-xs {{ $isSelesai ? 'text-gray-500' : 'text-gray-400' }} mt-1 hidden md:block">Kasus Ditutup</p>
+                        </div>
+                    </div>
+
                 </div>
+            </div>
+            
+            <div class="mt-8 pt-4 border-t border-gray-100 text-sm text-gray-600 text-center">
+                Status saat ini: <strong class="uppercase text-blue-600">{{ $pengaduan->status }}</strong> (Pembaruan terakhir: {{ $pengaduan->updated_at->diffForHumans() }})
             </div>
         </div>
 

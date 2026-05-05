@@ -23,6 +23,7 @@
             $total = $pengaduans->count();
             $diproses = $pengaduans->where('status', 'diproses')->count();
             $selesai = $pengaduans->where('status', 'selesai')->count();
+            $menunggu = $total - $diproses - $selesai;
         @endphp
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex items-center">
@@ -184,5 +185,60 @@
     });
 </script>
 @endif
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('statusChart').getContext('2d');
+        const dataMenunggu = {{ $menunggu }};
+        const dataDiproses = {{ $diproses }};
+        const dataSelesai = {{ $selesai }};
+        
+        // Hanya render jika ada data
+        if (dataMenunggu > 0 || dataDiproses > 0 || dataSelesai > 0) {
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Menunggu', 'Diproses', 'Selesai'],
+                    datasets: [{
+                        data: [dataMenunggu, dataDiproses, dataSelesai],
+                        backgroundColor: [
+                            '#eab308', // Yellow/Orange
+                            '#2563eb', // Blue
+                            '#16a34a'  // Green
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20,
+                                font: {
+                                    family: "'Inter', sans-serif",
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+        } else {
+            // Tampilkan placeholder jika kosong
+            document.getElementById('statusChart').parentElement.innerHTML = 
+                '<div class="flex flex-col items-center justify-center h-full text-gray-400">' +
+                '<svg class="w-12 h-12 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>' +
+                '<p class="text-sm">Belum ada data untuk ditampilkan</p></div>';
+        }
+    });
+</script>
 
 @endsection

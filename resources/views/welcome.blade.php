@@ -5,10 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Aspirasi | Portal Integritas & Pelayanan Publik</title>
+    <!-- Dark Mode Init -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -25,7 +33,7 @@
     </style>
 </head>
 
-<body class="bg-[#fcfdfe] text-slate-900 antialiased">
+<body class="bg-[#fcfdfe] text-slate-900 antialiased transition-colors duration-300" :class="{'dark-mode': document.documentElement.classList.contains('dark-mode')}">
 
     <!-- Premium Navbar -->
     <nav class="sticky top-0 z-[60] glass-effect border-b border-slate-200/60">
@@ -48,6 +56,13 @@
                     class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-all">Statistik</a>
                 <a href="#berita"
                     class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-all">Informasi</a>
+                
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" class="p-2 text-slate-500 hover:bg-slate-100 rounded-lg focus:outline-none transition-colors">
+                    <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                </button>
+
                 <div class="h-6 w-px bg-slate-200"></div>
                 @auth
                     <a href="{{ route('masyarakat.pengaduan.index') }}"
@@ -129,7 +144,7 @@
     </section>
 
     <!-- Alur Pelayanan (How It Works) -->
-    <section id="alur-pelayanan" class="py-24 bg-white border-b border-slate-100">
+    <section id="alur-pelayanan" class="py-24 bg-white border-b border-slate-100" data-aos="fade-up">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-blue-600 font-black tracking-[0.2em] text-xs uppercase mb-4">Cara Kerja</h2>
@@ -177,7 +192,7 @@
     </section>
 
     <!-- Bento Grid Stats Section -->
-    <section id="statistik" class="py-24 bg-slate-50">
+    <section id="statistik" class="py-24 bg-slate-50" data-aos="fade-up">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
                 <div>
@@ -239,7 +254,7 @@
     </section>
 
     <!-- News Grid Section -->
-    <section id="berita" class="py-24 bg-white border-t border-slate-100">
+    <section id="berita" class="py-24 bg-white border-t border-slate-100" data-aos="fade-up">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-slate-900 text-4xl font-black mb-4">Warta Komunitas</h2>
@@ -420,9 +435,55 @@
                     <div class="w-8 h-8 bg-slate-800 rounded-full"></div>
                 </div>
             </div>
-        </div>
     </footer>
 
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+
+    <!-- Dark Mode Script -->
+    <script>
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+            document.body.classList.add('dark-mode');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', function() {
+                themeToggleDarkIcon.classList.toggle('hidden');
+                themeToggleLightIcon.classList.toggle('hidden');
+
+                if (localStorage.getItem('theme')) {
+                    if (localStorage.getItem('theme') === 'light') {
+                        document.body.classList.add('dark-mode');
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        document.body.classList.remove('dark-mode');
+                        localStorage.setItem('theme', 'light');
+                    }
+                } else {
+                    if (document.body.classList.contains('dark-mode')) {
+                        document.body.classList.remove('dark-mode');
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        document.body.classList.add('dark-mode');
+                        localStorage.setItem('theme', 'dark');
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
