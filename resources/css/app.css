@@ -10,192 +10,40 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-/* ==========================================
-   DESIGN TOKENS (CSS Variables)
-   ========================================== */
-@layer base {
-    :root {
-        --bg-body: #f8fafc;
-        --bg-card: #ffffff;
-        --bg-surface: #f1f5f9;
-        --text-main: #1e293b;
-        --text-muted: #64748b;
-        --border-color: #e2e8f0;
-    }
+/* ============================================================
+   E-ASPIRASI — Light Mode Only Design System
+   Professional Blue (#2563eb) + White (#ffffff)
+   ============================================================ */
 
-    body.dark-mode {
-        --bg-body: #111827;
-        --bg-card: #1f2937;
-        --bg-surface: #1a2332;
-        --text-main: #f9fafb;
-        --text-muted: #9ca3af;
-        --border-color: #374151;
-        background-color: var(--bg-body);
-        color: var(--text-main);
-    }
+/* Card micro-interactions */
+.card {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -12px rgba(37, 99, 235, 0.1), 0 8px 20px -8px rgba(0, 0, 0, 0.06);
 }
 
-/* ==========================================
-   COMPONENT UTILITIES
-   ========================================== */
-@layer utilities {
-    /* Card micro-interactions */
-    .card {
-        background-color: var(--bg-card);
-        border-color: var(--border-color);
-        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-    }
-    .card:hover {
-        transform: translateY(-2px) scale(1.01);
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Button micro-interactions */
-    .btn {
-        transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    }
-    .btn:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Skeleton Loader */
-    .skeleton {
-        background: linear-gradient(90deg, #e2e8f0 25%, #cbd5e1 50%, #e2e8f0 75%);
-        background-size: 200% 100%;
-        animation: shimmer 1.5s infinite linear;
-        border-radius: 0.5rem;
-    }
-    body.dark-mode .skeleton {
-        background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
-        background-size: 200% 100%;
-    }
-
-    @keyframes shimmer {
-        0%   { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-    }
+/* Button micro-interactions */
+.btn {
+    transition: all 0.2s ease-in-out;
+}
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px -2px rgba(37, 99, 235, 0.25);
 }
 
-/* ==========================================
-   DARK MODE — BACKGROUND OVERRIDES
-   ========================================== */
-body.dark-mode .bg-white {
-    background-color: var(--bg-card) !important;
-}
-body.dark-mode .bg-gray-50,
-body.dark-mode .bg-slate-50,
-body.dark-mode .bg-gray-100,
-body.dark-mode .bg-slate-100 {
-    background-color: var(--bg-surface) !important;
+/* Skeleton Loader */
+.skeleton {
+    background: linear-gradient(90deg, #e2e8f0 25%, #cbd5e1 50%, #e2e8f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 0.5rem;
 }
 
-/* Sidebar & Header — distinct dark surface */
-body.dark-mode aside {
-    background-color: #0f172a !important;
-    border-color: var(--border-color) !important;
+@keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }
-body.dark-mode header {
-    background-color: var(--bg-card) !important;
-    border-color: var(--border-color) !important;
-}
-
-/* ==========================================
-   DARK MODE — TYPOGRAPHY (HIGH CONTRAST)
-   ========================================== */
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode h4,
-body.dark-mode h5,
-body.dark-mode h6,
-body.dark-mode label,
-body.dark-mode .text-gray-900,
-body.dark-mode .text-gray-800,
-body.dark-mode .text-gray-700,
-body.dark-mode .text-slate-900,
-body.dark-mode .text-slate-800,
-body.dark-mode .text-slate-700 {
-    color: var(--text-main) !important;
-}
-
-body.dark-mode p,
-body.dark-mode span,
-body.dark-mode .text-gray-600,
-body.dark-mode .text-gray-500,
-body.dark-mode .text-gray-400,
-body.dark-mode .text-slate-600,
-body.dark-mode .text-slate-500,
-body.dark-mode .text-slate-400 {
-    color: var(--text-muted) !important;
-}
-
-/* Ensure sidebar group labels stay muted */
-body.dark-mode nav p {
-    color: #6b7280 !important;
-}
-
-/* ==========================================
-   DARK MODE — BORDERS
-   ========================================== */
-body.dark-mode .border-gray-200,
-body.dark-mode .border-gray-100,
-body.dark-mode .border-slate-200,
-body.dark-mode .border-slate-100 {
-    border-color: var(--border-color) !important;
-}
-
-/* ==========================================
-   DARK MODE — INTERACTIVE STATES
-   ========================================== */
-body.dark-mode .hover\:bg-gray-100:hover,
-body.dark-mode .hover\:bg-slate-100:hover,
-body.dark-mode .hover\:bg-gray-50:hover {
-    background-color: #374151 !important;
-}
-
-/* Active sidebar item in dark mode */
-body.dark-mode .bg-blue-50 {
-    background-color: rgba(59, 130, 246, 0.15) !important;
-}
-body.dark-mode .text-blue-700 {
-    color: #60a5fa !important;
-}
-
-/* ==========================================
-   DARK MODE — FORM ELEMENTS
-   ========================================== */
-body.dark-mode select,
-body.dark-mode input[type="text"],
-body.dark-mode input[type="email"],
-body.dark-mode input[type="password"],
-body.dark-mode input[type="date"],
-body.dark-mode textarea {
-    background-color: #111827 !important;
-    border-color: #4b5563 !important;
-    color: var(--text-main) !important;
-}
-
-/* ==========================================
-   DARK MODE — TABLE
-   ========================================== */
-body.dark-mode table,
-body.dark-mode td {
-    color: var(--text-muted) !important;
-}
-body.dark-mode th {
-    color: var(--text-main) !important;
-    background-color: var(--bg-surface) !important;
-}
-body.dark-mode tr:hover {
-    background-color: #374151 !important;
-}
-
-/* ==========================================
-   DARK MODE — DROPDOWN & MODALS
-   ========================================== */
-body.dark-mode .shadow-lg,
-body.dark-mode .shadow-xl {
-    --tw-shadow-color: rgba(0, 0, 0, 0.4);
-}
-
