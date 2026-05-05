@@ -17,6 +17,7 @@ Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])-
 // Admin & Petugas Routes
 Route::middleware(['auth', 'role:admin,petugas'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('dashboard');
+    Route::get('/pengaduan/export', [\App\Http\Controllers\Admin\AdminController::class, 'exportPdf'])->name('pengaduan.export');
     Route::post('/pengaduan/{id}/status', [\App\Http\Controllers\Admin\AdminController::class, 'updateStatus'])->name('pengaduan.status');
 });
 

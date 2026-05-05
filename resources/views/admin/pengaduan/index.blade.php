@@ -3,38 +3,61 @@
 @section('title', 'Dashboard Admin & Petugas')
 
 @section('content')
-<div class="mb-8">
-    <h1 class="text-2xl font-bold text-gray-900">Dashboard Manajemen Laporan</h1>
-    <p class="text-sm text-gray-500 mt-1">Kelola dan tindak lanjuti laporan dari masyarakat.</p>
+<div class="mb-8 flex justify-between items-center">
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900">Dashboard Manajemen Laporan</h1>
+        <p class="text-sm text-gray-500 mt-1">Kelola dan tindak lanjuti laporan dari masyarakat.</p>
+    </div>
+    <div>
+        <a href="{{ route('admin.pengaduan.export', request()->query()) }}" target="_blank" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium text-sm transition-colors flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            Export PDF
+        </a>
+    </div>
 </div>
 
-<!-- Filter Section -->
-<div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 mb-6">
-    <form action="{{ route('admin.dashboard') }}" method="GET" class="flex flex-col md:flex-row gap-4 items-end">
-        <div class="flex-1 w-full">
-            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Klasifikasi</label>
-            <select name="classification" class="w-full rounded-lg border-gray-300 px-4 py-2 text-sm focus:ring-blue-500 focus:border-blue-500">
-                <option value="semua" {{ request('classification') == 'semua' ? 'selected' : '' }}>Semua Klasifikasi</option>
-                <option value="pengaduan" {{ request('classification') == 'pengaduan' ? 'selected' : '' }}>Pengaduan</option>
-                <option value="aspirasi" {{ request('classification') == 'aspirasi' ? 'selected' : '' }}>Aspirasi</option>
-                <option value="informasi" {{ request('classification') == 'informasi' ? 'selected' : '' }}>Informasi</option>
-            </select>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+    <div class="md:col-span-2">
+        <!-- Filter Section -->
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 h-full">
+            <h2 class="text-lg font-bold text-gray-900 mb-4">Filter Data</h2>
+            <form action="{{ route('admin.dashboard') }}" method="GET" class="flex flex-col gap-4">
+                <div class="flex-1 w-full">
+                    <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Klasifikasi</label>
+                    <select name="classification" class="w-full rounded-lg border-gray-300 px-4 py-2 text-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="semua" {{ request('classification') == 'semua' ? 'selected' : '' }}>Semua Klasifikasi</option>
+                        <option value="pengaduan" {{ request('classification') == 'pengaduan' ? 'selected' : '' }}>Pengaduan</option>
+                        <option value="aspirasi" {{ request('classification') == 'aspirasi' ? 'selected' : '' }}>Aspirasi</option>
+                        <option value="informasi" {{ request('classification') == 'informasi' ? 'selected' : '' }}>Informasi</option>
+                    </select>
+                </div>
+                <div class="flex-1 w-full">
+                    <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Status</label>
+                    <select name="status" class="w-full rounded-lg border-gray-300 px-4 py-2 text-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="semua" {{ request('status') == 'semua' ? 'selected' : '' }}>Semua Status</option>
+                        <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                        <option value="diverifikasi" {{ request('status') == 'diverifikasi' ? 'selected' : '' }}>Diverifikasi</option>
+                        <option value="diproses" {{ request('status') == 'diproses' ? 'selected' : '' }}>Diproses</option>
+                        <option value="selesai" {{ request('status') == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" class="w-full px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 font-medium text-sm transition-colors">Terapkan Filter</button>
+                </div>
+            </form>
         </div>
-        <div class="flex-1 w-full">
-            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Status</label>
-            <select name="status" class="w-full rounded-lg border-gray-300 px-4 py-2 text-sm focus:ring-blue-500 focus:border-blue-500">
-                <option value="semua" {{ request('status') == 'semua' ? 'selected' : '' }}>Semua Status</option>
-                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
-                <option value="diverifikasi" {{ request('status') == 'diverifikasi' ? 'selected' : '' }}>Diverifikasi</option>
-                <option value="diproses" {{ request('status') == 'diproses' ? 'selected' : '' }}>Diproses</option>
-                <option value="selesai" {{ request('status') == 'selesai' ? 'selected' : '' }}>Selesai</option>
-            </select>
+    </div>
+    <div class="md:col-span-1">
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 h-full flex flex-col items-center justify-center">
+            <h2 class="text-sm font-bold text-gray-900 mb-2 text-center">Statistik Klasifikasi</h2>
+            <div class="relative w-full max-w-[200px] aspect-square">
+                <canvas id="classificationChart"></canvas>
+            </div>
         </div>
-        <div>
-            <button type="submit" class="px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 font-medium text-sm transition-colors">Terapkan Filter</button>
-        </div>
-    </form>
+    </div>
 </div>
+
+
 
 <!-- Laporan Table -->
 <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
@@ -148,4 +171,62 @@
         {{ $pengaduans->links() }}
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Chart.js Doughnut Chart
+        const ctx = document.getElementById('classificationChart').getContext('2d');
+        const chartData = @json($chartData);
+        
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Pengaduan', 'Aspirasi', 'Informasi'],
+                datasets: [{
+                    data: [chartData.pengaduan, chartData.aspirasi, chartData.informasi],
+                    backgroundColor: [
+                        '#ef4444', // red-500
+                        '#3b82f6', // blue-500
+                        '#10b981'  // emerald-500
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '75%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20,
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // SweetAlert2 for success messages
+        @if(session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+                popup: 'rounded-xl'
+            }
+        });
+        @endif
+    });
+</script>
 @endsection
