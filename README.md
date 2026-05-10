@@ -143,8 +143,6 @@ Ubah konfigurasi pada *layer utilities* atau base class CSS:
 }
 ```
 
-<>
-
 ### Menambahkan Komponen Landing Page Baru
 Jika instansi membutuhkan blok informasi baru (misal: Profil Kepala Dinas):
 1. Buat file baru di `resources/views/components/landing/profil-dinas.blade.php`.
